@@ -3,6 +3,7 @@ var critical=require('critical').stream;
 var cssnano=require('gulp-cssnano');
 var htmlmin=require('gulp-htmlmin');
 var jsmin=require('gulp-uglify');
+var sourcemap=require('gulp-sourcemaps');
 
 gulp.task('criticalMinHtml',function(){
     return gulp.src('src/*.html')
@@ -32,13 +33,17 @@ gulp.task('cssnano2',function(){
 
 gulp.task('jsMin',function(){
     return gulp.src('src/js/*.js')
-                .pipe(jsmin())
+                .pipe(sourcemap.init())
+                    .pipe(jsmin())
+                .pipe(sourcemap.write())
                 .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('jsMin2',function(){
     return gulp.src('src/views/js/*.js')
-                .pipe(jsmin())
+                .pipe(sourcemap.init())
+                    .pipe(jsmin())
+                .pipe(sourcemap.write())
                 .pipe(gulp.dest('dist/views/js'));
 });
 

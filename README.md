@@ -18,4 +18,4 @@
   5. npm install --save-dev gulp-uglify
   6. config gulpfile.js to extract & Inline Critical-path CSS in HTML pages.
   7. config gulpfile.js to minify HTML/CSS/JS files.
-  
+13. install gulp-sourcemaps to map origin source code to minified code.
