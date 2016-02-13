@@ -7,15 +7,19 @@ var sourcemap=require('gulp-sourcemaps');
 
 gulp.task('criticalMinHtml',function(){
     return gulp.src('src/*.html')
-                .pipe(critical({minify:true,inline:true,css:['src/css/style.css','src/css/print.css']}))
-                .pipe(htmlmin({collapseWhitespace:true}))
+                .pipe(sourcemap.init())
+                    .pipe(critical({minify:true,inline:true,css:['src/css/style.css','src/css/print.css']}))
+                    .pipe(htmlmin({collapseWhitespace:true}))
+                .pipe(sourcemap.write())
                 .pipe(gulp.dest('dist'));
 });
 
 gulp.task('criticalMinHtml2',function(){
     return gulp.src('src/views/*.html')
-                .pipe(critical({minify:true,inline:true,css:['src/views/css/style.css','src/views/css/bootstrap-grid.css']}))
-                .pipe(htmlmin({collapseWhitespace:true}))
+                .pipe(sourcemap.init())
+                    .pipe(critical({minify:true,inline:true,css:['src/views/css/style.css','src/views/css/bootstrap-grid.css']}))
+                    .pipe(htmlmin({collapseWhitespace:true}))
+                .pipe(sourcemap.write())
                 .pipe(gulp.dest('dist/views'));
 });
 
