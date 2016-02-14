@@ -7,7 +7,7 @@
 5. npm install grunt and plugin(grunt-responsive-images);
 6. config gurntfile.js to compress images.
 7. copy some big weight images to "img_src" directory then run grunt to compress images. And compressed images will be put into "img_dist" directory.
-8. replace the big weight images with light ones.
+8. replace the big weight images with compressed ones.
 9. add media="print" to the CSS link if necessary.
 10. use async attribute on *script* tag.
 11. use web font loader function to load fonts from vendors.
