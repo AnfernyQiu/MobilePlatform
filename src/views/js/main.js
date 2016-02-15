@@ -18,6 +18,7 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
+'use strict';
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -406,13 +407,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -438,7 +439,7 @@ var resizePizzas = function(size) {
 
         var newSize = sizeSwitcher(size)*100+'%';
 
-        var allPizza = document.querySelectorAll(".randomPizzaContainer");
+        var allPizza = document.getElementsByClassName("randomPizzaContainer");
         var allPizzaLength = allPizza.length;
 
 
@@ -460,8 +461,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
+var pizzasDiv = document.getElementById("randomPizzas");
+for (var i = 2; i < 100; i++) {  
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -501,7 +502,7 @@ function updatePositions() {
       scrollArray.push(Math.sin(top/1250+i));
   }
     
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0, len=items.length; i < len; i++) {
       var phase=scrollArray[i % 5];
       items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
@@ -523,8 +524,13 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 32; i++) {
-    var elem = document.createElement('img');
+    var elem;
+    // calculate how much pizzas are needed for the screen according to the available height of the screen.
+    var windowHeight=window.screen.availHeight;
+    var numPizza=Math.ceil(windowHeight/256)*8;
+    console.log(numPizza);
+  for (var i = 0; i < numPizza; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
