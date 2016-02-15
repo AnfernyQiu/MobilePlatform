@@ -528,7 +528,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // calculate how much pizzas are needed for the screen according to the available height of the screen.
     var windowHeight=window.screen.availHeight;
     var numPizza=Math.ceil(windowHeight/256)*8;
-    console.log(numPizza);
   for (var i = 0; i < numPizza; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
